@@ -20,49 +20,6 @@ This is a replicated memory cache system implemented in Go. The system allows fo
 1. Clone this repository:
 
 ```bash
-git clone git@github.com:kawaii-kitsune/GoLang_ChacheMemory.git
-```
-## Start the cache servers:
-
-```bash
-go run main.go
-```
-### Usage
-
-## Adding Data to the Cache
-
-To add a key/value pair to the cache, send a GET request to /add endpoint with the key and value query parameters:
-
-```bash
-GET /add?key=mykey&value=myvalue
-```
-
-Sure, here's the README.md file content for your replicated memory cache system:
-
-markdown
-
-# Replicated Memory Cache
-
-This is a replicated memory cache system implemented in Go. The system allows for quick access to data using multiple servers, with data being stored in memory as key/value pairs and replicated to other connected servers.
-
-## Features
-
-- Add, retrieve, and delete key/value pairs in the cache
-- Replicate data to multiple peer servers for fault tolerance and scalability
-- Monitor cache content in real-time with Server-Sent Events (SSE)
-
-## Getting Started
-
-### Prerequisites
-
-- Go programming language installed
-- Basic understanding of HTTP and concurrent programming in Go
-
-### Installation
-
-1. Clone this repository:
-
-```bash
 git clone https://github.com/your-username/replicated-memory-cache.git
 ```
 ## Retrieving Data from the Cache
