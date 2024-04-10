@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Cache Updates</title>
+</head>
+<body>
+    <h1>Real-Time Cache Updates</h1>
+    <h2>Cache Content:</h2>
+    <ul id="updateList"></ul>
+
+    <script>
+        const updateList = document.getElementById('updateList');
+        const eventSource = new EventSource('/updates');
+
+        // Function to add items to the list
+        function addItemToCacheList(key) {
+            const listItem = document.createElement('li');
+            listItem.textContent = key;
+            updateList.appendChild(listItem); // Add item to the list
+        }
+
+        // Event listener for incoming SSE messages
+        eventSource.onmessage = function(event) {
+            const update = event.data;
+            updateList.innerHTML = ''; // Clear existing list before
+            addItemToCacheList(update); // Add new key to the list
+        };
+
+        // Function to fetch and update the list of keys from the server
+        function updateCacheKeys() {
+            fetch('/getCacheContent')
+                .then(response => response.json())
+                .then(data => {
+                    // Clear existing list before updating
+                    updateList.innerHTML = '';
+                    // Add keys to the list
+                    data.forEach(key => addItemToCacheList(key));
+                })
+                .catch(error => console.error('Error fetching cache content:', error));
+        }
+
+        // Periodically update the list of keys every 5 seconds
+        setInterval(updateCacheKeys, 5000);
+        
+        // Initial update of cache keys when the page loads
+        updateCacheKeys();
+    </script>
+</body>
+</html>
