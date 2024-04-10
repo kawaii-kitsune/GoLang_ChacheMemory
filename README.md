@@ -20,7 +20,7 @@ This is a replicated memory cache system implemented in Go. The system allows fo
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/your-username/replicated-memory-cache.git
+git clone https://github.com/kawaii-kitsune/ReplicatedMemoryCache.git
 ```
 ## Retrieving Data from the Cache
 
