@@ -187,6 +187,10 @@ func main() {
 		}
 	})
 
+	// Serve static files (HTML, CSS, etc.)
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/", http.StripPrefix("/", fs))
+
 	// ListenAndServe on multiple ports
 	go func() {
 		log.Fatal(http.ListenAndServe(":8080", nil))
